@@ -9,9 +9,16 @@ import Footer from '../components/Footer';
 import Page from '../components/Page';
 
 export default class SponsorPage extends React.Component {
+  static async getInitialProps({ req }) {
+    const protocol = req && req.headers.host.indexOf('syntax.fm') > -1 ? 'https' : req ? req.protocol : '';
+    const baseURL = req ? `${protocol}://${req.headers.host}` : window.location.origin;
+    return { baseURL };
+  }
   render() {
+    const { baseURL } = this.props;
     return (
       <Page>
+        <Meta show={{ title: "Sponsors" }} baseURL={baseURL} />
         <div className="wrapper wrapper--text">
           <h1>Syntax Sponsorship</h1>
           <p>
@@ -32,7 +39,7 @@ export default class SponsorPage extends React.Component {
             <a href="https://wesbos.com">Wes Bos</a> and <a href="http://scotttolinski.com/">Scott Tolinkski</a>, two
             independent full stack developers who create online training courses. In each episode, Scott and Wes break
             down topics to provide <em>"Tasty Treats"</em> to the audience — applicable tips and nuggets of information
-            to help web developers in their careers.
+      to help web developers in their careers.
           </p>
           <p>
             Sponsoring the Syntax podcast is ideal for anyone who is looking to reach an engaged, technical, high-income
@@ -69,8 +76,8 @@ export default class SponsorPage extends React.Component {
 
           <blockquote class="twitter-tweet">
             <p lang="en" dir="ltr">To be honest <a href="https://twitter.com/syntaxfm?ref_src=twsrc%5Etfw">@syntaxfm</a> is the only podcast where I listen to the sponsor adds, they don’t event feel like adds</p>&mdash; Omar Aguinaga (@Soyoag) <a href="https://twitter.com/Soyoag/status/988205788794572800?ref_src=twsrc%5Etfw">April 22, 2018</a>
-          </blockquote> 
-          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+          </blockquote>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
           <p>
             While exact numbers are hard to get, here are a few nuggets of information about our audience that should
@@ -128,7 +135,7 @@ export default class SponsorPage extends React.Component {
           <p>We have found that we get the best results for our advertisers when they sponsor at least three shows.</p>
           <p>
             Currently each sponsor spot is $1,000 USD per episode with a minimum of three episodes, though this price will
-            increase as our audience does. Single show sponsorships are $1,200. 
+            increase as our audience does. Single show sponsorships are $1,200.
           </p>
 
           <p>As part of the sponsorship package, you'll get:</p>
